@@ -1,0 +1,50 @@
+server:
+  port: 8089
+hello:
+  message: Hello World controller
+
+spring:
+  profiles:
+    active:
+    - prof1
+---
+spring:
+  config:
+    activate:
+      on-profile:
+      - prof1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:sqlserver://172.16.1.163:1433;database=edefter-file-process
+    username: uut
+    password: uut
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+        exclude:
+        - "beans"
+        - "mappings"
+        - "scheduledtasks"    
+---
+spring:
+  config:
+    activate:
+      on-profile:
+      - prof2
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:sqlserver://172.16.1.163:1433;database=edefter-file-process
+    username: uut
+    password: uut
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    
